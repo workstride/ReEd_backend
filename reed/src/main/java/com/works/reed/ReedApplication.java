@@ -8,5 +8,4 @@ public class ReedApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReedApplication.class, args);
 	}
-
 }
