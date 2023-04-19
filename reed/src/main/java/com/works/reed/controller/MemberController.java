@@ -19,17 +19,17 @@ public class MemberController {
 
     private final MemberRepository memberRepository;
 
-    @GetMapping("/")
+    @GetMapping("/memberList")
     public String members(Model model) {
         List<Member> members = memberRepository.findAll();
         model.addAttribute("members", members);
-        return "/html/members.html";
+        return "basic/members.html";
     }
 
     @PostConstruct
     public void init() {
-        memberRepository.save(new Member("qaqa1", "qaqa1", "최현호", "010-4467-4003", "qaqqa@gmail.com", ""));
-        memberRepository.save(new Member("qaqa2", "qaqa2", "최현호", "010-4467-4003", "qaqqa@gmail.com", ""));
+        memberRepository.save(new Member(1L, "qaqa1", "qaqa1", "최현호", "010-4467-4003", "qaqqa@gmail.com", "010"));
+        memberRepository.save(new Member(2L, "qaqa2", "qaqa2", "최현호", "010-4467-4003", "qaqqa@gmail.com", "4467"));
     }
 
     @GetMapping("/register")

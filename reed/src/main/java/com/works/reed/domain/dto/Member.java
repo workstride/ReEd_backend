@@ -1,13 +1,16 @@
 package com.works.reed.domain.dto;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Entity
+@Table(name = "member")
 public class Member {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long MemberNo;
+    @Column(name = "MemberId")
     private String MemberId;
     private String MemberPassword;
     private String MemberName;
@@ -20,7 +23,8 @@ public class Member {
 
     }
 
-    public Member(String memberId, String memberPassword, String memberName, String memberTel, String memberEamil, String image) {
+    public Member(Long MemberNo, String memberId, String memberPassword, String memberName, String memberTel, String memberEamil, String image) {
+        this.MemberNo = MemberNo;
         this.MemberId = memberId;
         this.MemberPassword = memberPassword;
         this.MemberName = memberName;

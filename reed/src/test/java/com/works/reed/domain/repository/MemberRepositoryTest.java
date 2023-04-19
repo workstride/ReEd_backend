@@ -19,7 +19,7 @@ public class MemberRepositoryTest {
 
     @Test
     void save() {
-        Member member = new Member("qaqa", "qaqa0", "최현호", "010-4467-4003", "qaqqa@gmail.com", "");
+        Member member = new Member(1L, "qaqa", "qaqa0", "최현호", "010-4467-4003", "qaqqa@gmail.com", "");
         Member saveMember = memberRepository.save(member);
         Member findMember = memberRepository.findById(member.getMemberNo());
 
@@ -28,8 +28,8 @@ public class MemberRepositoryTest {
 
     @Test
     void findAll() {
-        Member member01 = new Member("qaqa1", "qaqa1", "최현호1", "010-4467-40403", "qaqqa@gmail.com", "");
-        Member member02 = new Member("qaqa2", "qaqa2", "최현호2", "010-4467-42003", "qaqqa@gmail.com", "");
+        Member member01 = new Member(1L, "qaqa1", "qaqa1", "최현호1", "010-4467-40403", "qaqqa@gmail.com", "");
+        Member member02 = new Member(2L, "qaqa2", "qaqa2", "최현호2", "010-4467-42003", "qaqqa@gmail.com", "");
 
         memberRepository.save(member01);
         memberRepository.save(member02);
