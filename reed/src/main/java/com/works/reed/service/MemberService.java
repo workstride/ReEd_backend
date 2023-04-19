@@ -16,4 +16,7 @@ public class MemberService {
         Long savedId = memberRepository.save(memberEntity).getMemberId();
         return savedId;
     }
+
+    public boolean login(MemberDTO memberDTO) {
+    }
 }

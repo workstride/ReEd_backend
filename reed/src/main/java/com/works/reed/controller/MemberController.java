@@ -35,7 +35,7 @@ public class MemberController {
     public  String login(@ModelAttribute MemberDTO memberDTO){
         boolean loginResult = memberService.login(memberDTO);
         if (loginResult){
-            return "memberPages"
+            return "memberPages";
         }
     }
 
