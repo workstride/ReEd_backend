@@ -1,6 +1,8 @@
 package com.works.reed.domain.repository;
 
 import com.works.reed.domain.dto.Member;
+import com.works.reed.dto.MemberDTO;
+import com.works.reed.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +21,8 @@ public class MemberRepositoryTest {
 
     @Test
     void save() {
-        Member member = new Member(1L, "qaqa", "qaqa0", "최현호", "010-4467-4003", "qaqqa@gmail.com", "");
-        Member saveMember = memberRepository.save(member);
+        MemberDTO member = new MemberDTO(1L, "qaqa", "qaqa0", "최현호", "010-4467-4003", "qaqqa@gmail.com", "");
+        member.saveMember = memberRepository.save(member);
         Member findMember = memberRepository.findById(member.getMemberNo());
 
         assertThat(findMember).isEqualTo(saveMember);

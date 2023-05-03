@@ -1,13 +1,16 @@
 package com.works.reed.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
+@AllArgsConstructor
 public class MemberDTO {
-    private Long id;
-    private String memberEmaill;
-    private String memberPassword;
     private String memberId;
+    private String memberPassword;
+    private String memberEmail;
+    private String memberName;
     private String memberTel;
 
 }

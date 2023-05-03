@@ -1,39 +1,41 @@
 package com.works.reed.controller;
 
-import com.works.reed.domain.dto.Member;
-import com.works.reed.domain.repository.MemberRepository;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.works.reed.dto.MemberDTO;
+import com.works.reed.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/member")
-@RequiredArgsConstructor
+@RestController
+@RequestMapping("/members")
 public class MemberController {
 
-    private final MemberRepository memberRepository;
+    @Autowired
+    MemberService memberService;
 
-    @GetMapping("/memberList")
-    public String members(Model model) {
-        List<Member> members = memberRepository.findAll();
-        model.addAttribute("members", members);
-        return "basic/members.html";
+    @PostMapping("")
+    public MemberDTO insertMember(@RequestBody MemberDTO member) {
+        return memberService.insertMember(member);
     }
 
-    @PostConstruct
-    public void init() {
-        memberRepository.save(new Member(1L, "qaqa1", "qaqa1", "최현호", "010-4467-4003", "qaqqa@gmail.com", "010"));
-        memberRepository.save(new Member(2L, "qaqa2", "qaqa2", "최현호", "010-4467-4003", "qaqqa@gmail.com", "4467"));
+    @GetMapping("")
+    public List<MemberDTO> getAllMembers() {
+        return memberService.getAllMembers();
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "/html/save.html";
+    @GetMapping("/{memberId}")
+    public MemberDTO getMemberByMemberId(@PathVariable String memberId) {
+        return memberService.getMemberByMemberId(memberId);
+    }
+
+    @PutMapping("/{memberId}")
+    public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
+        memberService.updateMemberPassword(memberId, member);
+    }
+
+    @DeleteMapping("/{memberId}")
+    public void deleteMember(@PathVariable String memberId) {
+        memberService.deleteMember(memberId);
     }
 }
