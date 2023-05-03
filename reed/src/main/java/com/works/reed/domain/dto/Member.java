@@ -1,8 +1,6 @@
 package com.works.reed.domain.dto;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "member")
@@ -19,7 +17,7 @@ public class Member {
     private String image;
     private String createdAt;
 
-    public Member() {
+    public Member(Long memberNo, String memberId, String memberPassword, String memberName, String memberTel, String memberEamil, String image, String createdAt) {
 
     }
 
