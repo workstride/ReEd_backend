@@ -38,7 +38,7 @@ public class MemberLoginController {
     }
     @PutMapping("/member/{No}")
     public void PutMember(@PathVariable("MemberNo") Long MemberNo, @RequestParam("MemberId") String MemberId, @RequestParam("MemberPassword") String MemberPassword, @RequestParam("MemberName") String MemberName, @RequestParam("MemberTel") String MemberTel, @RequestParam("MemberEamil") String MemberEamil, @RequestParam("image") String image, @RequestParam("createdAt")String createdAt){
-        Member member = new MemberMap.get()
+        Member member = new MemberMap.get(MemberNo);
         member.setMemberId(MemberId);
         member.setMemberPassword(MemberPassword);
         member.setMemberName(MemberName);
