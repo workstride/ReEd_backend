@@ -1,6 +1,6 @@
 package com.works.reed.controller;
 
-import com.works.reed.dto.MemberDTO;
+import com.works.reed.dto.MemberDto;
 import com.works.reed.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +14,28 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+    /**
+     * 회원가입 후 멤버 정보 등록
+     * @param member
+     * @return
+     */
     @PostMapping("")
-    public MemberDTO insertMember(@RequestBody MemberDTO member) {
+    public MemberDto insertMember(@RequestBody MemberDto member) {
         return memberService.insertMember(member);
     }
 
     @GetMapping("")
-    public List<MemberDTO> getAllMembers() {
+    public List<MemberDto> getAllMembers() {
         return memberService.getAllMembers();
     }
 
     @GetMapping("/{memberId}")
-    public MemberDTO getMemberByMemberId(@PathVariable String memberId) {
+    public MemberDto getMemberByMemberId(@PathVariable String memberId) {
         return memberService.getMemberByMemberId(memberId);
     }
 
     @PutMapping("/{memberId}")
-    public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
+    public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDto member) {
         memberService.updateMemberPassword(memberId, member);
     }
 
