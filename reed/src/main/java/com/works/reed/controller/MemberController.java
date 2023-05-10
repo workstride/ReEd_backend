@@ -20,7 +20,7 @@ public class MemberController {
      * @param member
      * @return
      */
-    @PostMapping("")
+    @PostMapping("/register")
     public MemberDTO insertMember(@RequestBody MemberDTO member) {
         return memberService.register(member);
     }
