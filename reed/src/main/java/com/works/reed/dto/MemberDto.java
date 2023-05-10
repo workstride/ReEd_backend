@@ -1,12 +1,13 @@
 package com.works.reed.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter
+@Setter
+@Getter
 @AllArgsConstructor
-public class MemberDto {
+@NoArgsConstructor
+@Builder
+public class MemberDTO {
     private String memberId;
     private String memberPassword;
     private String memberEmail;
