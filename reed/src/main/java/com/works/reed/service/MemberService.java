@@ -1,35 +1,40 @@
 package com.works.reed.service;
 
-import com.works.reed.dto.MemberDto;
-import com.works.reed.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.works.reed.dto.MemberDTO;
+import com.works.reed.entity.MemberEntity;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class  MemberService {
+public interface MemberService {
+    public MemberDTO register(MemberDTO member);
 
-    @Autowired
-    MemberRepository memberRepository;
+    public MemberDTO read(String memberId);
 
-    public MemberDto insertMember(MemberDto member) {
-        return memberRepository.insertMember(member);
+    public void remove(String memberId);
+
+    public void modify(MemberDTO memberDTO);
+
+    default MemberEntity dtoToEntity(MemberDTO dto) {
+        MemberEntity entity = MemberEntity.builder()
+                .memberId(dto.getMemberId())
+                .memberPassword(dto.getMemberPassword())
+                .memberName(dto.getMemberName())
+                .memberEmail(dto.getMemberEmail())
+                .memberTel(dto.getMemberTel())
+                .memberType(dto.getMemberType())
+                .build();
+        return entity;
     }
 
-    public List<MemberDto> getAllMembers() {
-        return memberRepository.getAllMembers();
-    }
-
-    public MemberDto getMemberByMemberId(String memberId) {
-        return memberRepository.getMemberByMemberId(memberId);
-    }
-
-    public void updateMemberPassword(String memberId, MemberDto member) {
-        memberRepository.updateMemberPassword(memberId, member);
-    }
-
-    public void deleteMember(String memberId) {
-        memberRepository.deleteMember(memberId);
+    default MemberDTO entityToDto(MemberEntity entity) {
+        MemberDTO dto = MemberDTO.builder()
+                .memberName(entity.getMemberName())
+                .memberId(entity.getMemberId())
+                .memberPassword(entity.getMemberPassword())
+                .memberEmail(entity.getMemberEmail())
+                .memberTel(entity.getMemberTel())
+                .memberType(entity.getMemberType()).build();
+        return dto;
     }
 }

@@ -1,15 +1,22 @@
 package com.works.reed.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "member")
 @NoArgsConstructor
-class MemberEntity {
+@AllArgsConstructor
+@Builder
+@Getter
+public class MemberEntity extends BaseEntity{
     @Id
     @Column(name = "memberId", unique = true, nullable = false)
     private String memberId;
