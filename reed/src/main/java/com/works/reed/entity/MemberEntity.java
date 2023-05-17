@@ -1,10 +1,8 @@
 package com.works.reed.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +20,7 @@ public class MemberEntity extends BaseEntity{
     private String memberId;
 
     @Column(name = "memberPassword", length = 50, nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String memberPassword;
 
     @Column(name = "memberEmail", nullable = false)
@@ -35,4 +34,5 @@ public class MemberEntity extends BaseEntity{
 
     @Column(name = "memberType", nullable = false)
     private Integer memberType;
+
 }
