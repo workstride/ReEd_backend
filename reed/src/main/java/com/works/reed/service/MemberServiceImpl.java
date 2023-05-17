@@ -4,22 +4,25 @@ import com.works.reed.dto.MemberDTO;
 import com.works.reed.entity.MemberEntity;
 import com.works.reed.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
+        @Service
+        @RequiredArgsConstructor
+        public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository memberRepository;
+            private final MemberRepository memberRepository;
 
-    public MemberDTO register(MemberDTO member) {
-        MemberEntity memberEntity = dtoToEntity(member);
-        memberEntity = memberRepository.save(memberEntity);
-        return entityToDto(memberEntity);
+            public MemberDTO register(MemberDTO member) {
+                MemberEntity memberEntity = dtoToEntity(member);
+                memberEntity = memberRepository.save(memberEntity);
+                return entityToDto(memberEntity);
+            }
+
+            public List<MemberEntity> getAllMembers() {
+        return memberRepository.findAll();
     }
 
     public MemberDTO read(String memberId){
@@ -28,17 +31,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public void remove(String memberId) {
-//            memberRepository.delete();
+        memberRepository.deleteById(memberId);
     }
 
     public void modify(MemberDTO memberDTO){
-//        memberRepository.save();
+//        memberRepository.save(memberDTO)
     }
-
-//
-//    public List<MemberDTO> getAllMembers() {
-//        return memberRepository.getAllMembers();
-//    }
-//
 
 }

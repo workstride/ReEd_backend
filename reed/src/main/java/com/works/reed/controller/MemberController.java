@@ -1,9 +1,10 @@
 package com.works.reed.controller;
 
 import com.works.reed.dto.MemberDTO;
+import com.works.reed.entity.MemberEntity;
 import com.works.reed.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,20 +16,20 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    /**
-     * 회원가입 후 멤버 정보 등록
-     * @param member
-     * @return
-     */
-    @PostMapping("/register")
-    public MemberDTO insertMember(@RequestBody MemberDTO member) {
-        return memberService.register(member);
+    @GetMapping("/register")
+    public String registerForm() {
+        return "/save";
     }
 
-//    @GetMapping("")
-//    public List<MemberDTO> getAllMembers() {
-//        return memberService.getAllMembers();
-//    }
+    @PostMapping("/register")
+    public void insertMember(@RequestBody MemberDTO member) {
+        memberService.register(member);
+    }
+
+    @GetMapping("")
+    public List<MemberEntity> getAllMembers() {
+        return memberService.getAllMembers();
+    }
 
     @GetMapping("/{memberId}")
     public MemberDTO getMemberByMemberId(@PathVariable String memberId) {
@@ -41,7 +42,7 @@ public class MemberController {
         memberService.modify(member);
     }
 
-    @DeleteMapping("/{memberId}")
+    @DeleteMapping("/delete/{memberId}")
     public void deleteMember(@PathVariable String memberId) {
         memberService.remove(memberId);
     }

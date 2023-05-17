@@ -24,9 +24,6 @@ public class MemberEntity extends BaseEntity{
     @Column(name = "memberPassword", length = 50, nullable = false)
     private String memberPassword;
 
-    @Column(name = "memberEmail", nullable = false)
-    private String memberEmail;
-
     @Column(name = "memberName", nullable = false)
     private String memberName;
 

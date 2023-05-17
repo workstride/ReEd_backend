@@ -10,7 +10,6 @@ import lombok.*;
 public class MemberDTO {
     private String memberId;
     private String memberPassword;
-    private String memberEmail;
     private String memberName;
     private String memberTel;
     private Integer memberType;

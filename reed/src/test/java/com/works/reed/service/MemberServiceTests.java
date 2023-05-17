@@ -12,8 +12,13 @@ public class MemberServiceTests {
 
     @Test
     public void testRegister(){
-        MemberDTO memberDTO = MemberDTO.builder().memberId("kkk12").memberPassword("1234").memberName("test")
-                .memberEmail("yyy@naver.com").memberTel("010-1234-1234").memberType(1).build();
+        MemberDTO memberDTO = MemberDTO.builder()
+                .memberId("kkk12")
+                .memberPassword("1234")
+                .memberName("test")
+                .memberTel("010-1234-1234")
+                .memberType(1)
+                .build();
         memberService.register(memberDTO);
     }
 }
