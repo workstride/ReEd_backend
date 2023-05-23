@@ -1,13 +1,9 @@
 package com.works.reed.controller;
 
 import com.works.reed.dto.MemberDTO;
-import com.works.reed.entity.MemberEntity;
 import com.works.reed.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,13 +18,8 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public void insertMember(@RequestBody MemberDTO member) {
-        memberService.register(member);
-    }
-
-    @GetMapping("")
-    public List<MemberEntity> getAllMembers() {
-        return memberService.getAllMembers();
+    public MemberDTO insertMember(@RequestBody MemberDTO member) {
+        return memberService.register(member);
     }
 
     @GetMapping("/{memberId}")
@@ -38,7 +29,6 @@ public class MemberController {
 
     @PutMapping("/{memberId}")
     public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
-//        memberId, member
         memberService.modify(member);
     }
 

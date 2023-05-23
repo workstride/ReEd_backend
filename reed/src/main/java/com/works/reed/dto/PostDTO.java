@@ -10,7 +10,7 @@ import lombok.*;
 public class PostDTO {
 
     private Long postId;
-    private String postUser;
+    private String postMember;
     private String postTitle;
     private String postDetail;
 }

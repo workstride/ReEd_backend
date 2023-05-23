@@ -1,9 +1,7 @@
 package com.works.reed.domain.repository;
 
 import com.works.reed.entity.MemberEntity;
-import com.works.reed.entity.PostEntity;
 import com.works.reed.repository.MemberRepository;
-import com.works.reed.repository.PostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
