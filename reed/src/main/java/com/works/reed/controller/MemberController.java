@@ -1,8 +1,12 @@
 package com.works.reed.controller;
 
 import com.works.reed.dto.MemberDTO;
+import com.works.reed.dto.PageRequestDTO;
+import com.works.reed.dto.PageResultDTO;
+import com.works.reed.entity.Member;
 import com.works.reed.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +14,15 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/api/v1/member/*")
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
 
     /**
      * 회원가입 후 멤버 정보 등록
+     *
      * @param member
      * @return
      */
@@ -25,15 +31,12 @@ public class MemberController {
         return memberService.register(member);
     }
 
-//    @GetMapping("")
-//    public List<MemberDTO> getAllMembers() {
-//        return memberService.getAllMembers();
-//    }
-
-    @GetMapping("/{memberId}")
-    public MemberDTO getMemberByMemberId(@PathVariable String memberId) {
-        return memberService.read(memberId);
+    @GetMapping("/list")
+    public PageResultDTO<MemberDTO, Member> getAllMembers(PageRequestDTO pageRequestDTO) {
+        log.debug("========================= list");
+        return memberService.getList(pageRequestDTO);
     }
+
 
     @PutMapping("/{memberId}")
     public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
@@ -43,7 +46,7 @@ public class MemberController {
 
     @DeleteMapping("/{memberId}")
     public void deleteMember(@PathVariable String memberId) {
-        memberService.remove(memberId);
+        //  memberService.remove(memberId);
     }
 
 }

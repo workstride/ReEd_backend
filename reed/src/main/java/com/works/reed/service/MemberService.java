@@ -1,40 +1,41 @@
 package com.works.reed.service;
 
 import com.works.reed.dto.MemberDTO;
-import com.works.reed.entity.MemberEntity;
-
-import java.util.List;
-import java.util.Optional;
+import com.works.reed.dto.PageRequestDTO;
+import com.works.reed.dto.PageResultDTO;
+import com.works.reed.entity.Member;
 
 public interface MemberService {
     public MemberDTO register(MemberDTO member);
 
-    public MemberDTO read(String memberId);
+    public MemberDTO get(Long mno);
 
-    public void remove(String memberId);
+    public PageResultDTO<MemberDTO, Member> getList(PageRequestDTO requestDTO);
+
+    public void remove(Long mno);
 
     public void modify(MemberDTO memberDTO);
 
-    default MemberEntity dtoToEntity(MemberDTO dto) {
-        MemberEntity entity = MemberEntity.builder()
+    default Member dtoToEntity(MemberDTO dto) {
+        Member entity = Member.builder()
+                .mno(dto.getMno())
                 .memberId(dto.getMemberId())
                 .memberPassword(dto.getMemberPassword())
                 .memberName(dto.getMemberName())
                 .memberEmail(dto.getMemberEmail())
                 .memberTel(dto.getMemberTel())
-                .memberType(dto.getMemberType())
                 .build();
         return entity;
     }
 
-    default MemberDTO entityToDto(MemberEntity entity) {
+    default MemberDTO entityToDto(Member entity) {
         MemberDTO dto = MemberDTO.builder()
-                .memberName(entity.getMemberName())
+                .mno(entity.getMno())
                 .memberId(entity.getMemberId())
-                .memberPassword(entity.getMemberPassword())
+                .memberName(entity.getMemberName())
                 .memberEmail(entity.getMemberEmail())
                 .memberTel(entity.getMemberTel())
-                .memberType(entity.getMemberType()).build();
+                .build();
         return dto;
     }
 }
