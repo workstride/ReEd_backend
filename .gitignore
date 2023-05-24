@@ -53,3 +53,4 @@ debug.log
 
 # Editor specific files
 .DS_Store
+reed/src/main/resources/static/asset-manifest.json
