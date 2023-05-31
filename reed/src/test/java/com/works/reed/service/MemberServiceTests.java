@@ -13,15 +13,9 @@ public class MemberServiceTests {
     @Test
     public void testRegister(){
         MemberDTO memberDTO = MemberDTO.builder()
-<<<<<<< Updated upstream
-                .memberId("kkk12")
-                .memberPassword("1234")
-                .memberName("test")
-=======
                 .memberId("qwer1243")
                 .memberPassword("1234")
                 .memberName("김이박")
->>>>>>> Stashed changes
                 .memberTel("010-1234-1234")
                 .memberType(1)
                 .build();
