@@ -4,9 +4,9 @@ import com.works.reed.dto.AuthenticationRequest;
 import com.works.reed.dto.AuthenticationResponse;
 import com.works.reed.dto.MemberDTO;
 import com.works.reed.entity.MemberRole;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;

@@ -5,6 +5,7 @@ import com.works.reed.entity.MemberRole;
 import com.works.reed.filter.JwtAuthenticationFilter;
 import com.works.reed.filter.JwtExceptionFilter;
 import com.works.reed.handler.JwtAuthenticationEntryPoint;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import javax.servlet.http.HttpServletResponse;
+
 
 @Configuration
 @EnableWebSecurity
@@ -46,11 +47,11 @@ public class SecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/auth/**", "/login")
+                .requestMatchers("/api/v1/auth/**", "/login", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/", "/index*", "/static/**", "/locales/**", "/*.png", "/*.js", "/*.json", "/*.ico", "/*.svg")
+                .requestMatchers(HttpMethod.GET, "/", "/index*", "/static/**", "/locales/**", "/*.png", "/*.js", "/*.json", "/*.ico", "/*.svg")
                 .permitAll()
-                .antMatchers("/api/v1/member/**").hasAnyRole(MemberRole.ADMIN.name(), MemberRole.MANAGER.name())
+                .requestMatchers("/api/v1/member/**").hasAnyRole(MemberRole.ADMIN.name(), MemberRole.MANAGER.name())
 
 
                 .anyRequest()

@@ -1,6 +1,6 @@
 package com.works.reed.entity;
 
-import javax.persistence.Entity;
+
 
 
 public enum MemberRole {

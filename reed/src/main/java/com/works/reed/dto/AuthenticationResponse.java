@@ -19,7 +19,8 @@ public class AuthenticationResponse {
 
 //    @JsonProperty("accessToken")
     private String accessToken;
-    @JsonIgnore
+
+//    @JsonIgnore
     private String refreshToken;
 
     private List<String> role;

@@ -1,12 +1,13 @@
 package com.works.reed.repository;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.works.reed.entity.Member;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.validation.constraints.NotBlank;
+
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {

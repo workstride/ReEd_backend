@@ -4,6 +4,10 @@ import com.works.reed.entity.Token;
 import com.works.reed.repository.TokenRepository;
 import com.works.reed.service.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -35,7 +35,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException, ExpiredJwtException {
-        if (request.getServletPath().contains("/api/v1/auth")) {
+//        request.getServletPath().contains("/api/v1/auth")
+        if (request.getServletPath().matches(".*/api/v1/auth.*|.*swagger-ui.*|.*\\/v3\\/api-docs.*")) { // auth, swagger
             filterChain.doFilter(request, response);
             return;
         }
