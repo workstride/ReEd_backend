@@ -17,12 +17,12 @@ public class AuthenticationServiceTests {
     @Test
     public void testRegister(){
         MemberDTO member = MemberDTO.builder()
-                .memberId("test")
+                .memberId("test2")
                 .memberPassword("1234")
-                .memberName("테스터")
-                .memberEmail("test@dgsw.ac.kr")
+                .memberName("테스터2")
+                .memberEmail("test2@dgsw.ac.kr")
                 .memberTel("01012341234")
-                .roles(List.of("STUDENT", "PARENT", "TEACHER", "HEAD_TEACHER", "MANAGER", "ADMIN"))
+                .roles(List.of("STUDENT", "PARENT", "TEACHER", "HEAD_TEACHER"))
                 .build();
         System.out.println(member);
         System.out.println(authenticationService.register(member));

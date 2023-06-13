@@ -1,4 +1,4 @@
 package com.works.reed.entity;
 
-public class PostEntity {
+public class Post {
 }
