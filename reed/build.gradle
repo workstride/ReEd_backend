@@ -94,3 +94,11 @@ tasks.named('test') {
 //    into "$projectDir/src/main/resources/static"
 //}
 
+bootJar {
+	mainClassName = 'com.works.reed.ReedApplication'
+}
+
+bootRun {
+	String activeProfile = System.properties['spring.profiles.active']
+	systemProperty "spring.profiles.active", activeProfile
+}
