@@ -5,6 +5,7 @@ import com.works.reed.dto.AuthenticationResponse;
 import com.works.reed.dto.MemberDTO;
 import com.works.reed.service.AuthenticationService;
 import com.works.reed.service.LogoutService;
+import com.works.reed.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,7 +28,7 @@ import java.io.IOException;
 @Slf4j
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final LogoutService logoutService;
+    private final MemberService memberService;
 
     @Operation(summary = "회원 인증", description = "회원 토근 발급")
     @PostMapping("/authenticate")
@@ -44,10 +45,12 @@ public class AuthenticationController {
                 ? ResponseEntity.ok(response)
                 : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
-    @Operation(summary = "회원 가입", description = "일반 회원 가입(인증x)")
+
+    @Operation(summary = "회원 가입", description = "회원 가입, ") // 나중에  roles 구분 처리
     @PostMapping("/register")
-    public MemberDTO insertMember(@RequestBody MemberDTO member) {
-           return null;
+    public MemberDTO insertMember(@Valid @RequestBody MemberDTO member) {
+        log.info("/register ... {}", member.toString());
+        return memberService.register(member);
        }
 
 }

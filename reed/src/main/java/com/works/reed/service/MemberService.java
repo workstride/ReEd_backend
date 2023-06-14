@@ -4,6 +4,11 @@ import com.works.reed.dto.MemberDTO;
 import com.works.reed.dto.PageRequestDTO;
 import com.works.reed.dto.PageResultDTO;
 import com.works.reed.entity.Member;
+import com.works.reed.entity.MemberRole;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface MemberService {
     public MemberDTO register(MemberDTO member);
@@ -16,6 +21,16 @@ public interface MemberService {
 
     public void modify(MemberDTO memberDTO);
 
+    default HashSet<MemberRole> memberRoleConverter(List<String> roles) {
+        return roles.stream().map(role -> {
+            try {
+                return MemberRole.valueOf(role.toUpperCase());
+            } catch (Exception e) {
+                return null;
+            }
+        }).filter(role -> role != null).collect(Collectors.toCollection(HashSet::new));
+    }
+
     default Member dtoToEntity(MemberDTO dto) {
         Member entity = Member.builder()
                 .mno(dto.getMno())
@@ -24,6 +39,7 @@ public interface MemberService {
                 .memberName(dto.getMemberName())
                 .memberEmail(dto.getMemberEmail())
                 .memberTel(dto.getMemberTel())
+                .roleSet(memberRoleConverter(dto.getRoles()))
                 .build();
         return entity;
     }

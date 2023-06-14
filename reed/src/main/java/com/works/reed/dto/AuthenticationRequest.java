@@ -15,10 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 public class AuthenticationRequest {
     @NotBlank(message = "아이디 입력해 주세요.")
-    @JsonProperty("member_id")
+    @JsonProperty("memberId")
     private String memberId;
     @NotBlank(message = "비밀번호 입력해 주세요.")
-    @JsonProperty("member_password")
+    @JsonProperty("memberPassword")
     private String memberPassword;
 
 }

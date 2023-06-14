@@ -45,8 +45,8 @@ public class MemberController {
     }
 
     @Operation(summary = "회원 수정", description = "...")
-    @PutMapping("/{memberId}")
-    public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
+    @PutMapping("")
+    public void updateMemberPassword(@RequestBody MemberDTO member) {
 //        memberId, member
         memberService.modify(member);
     }
