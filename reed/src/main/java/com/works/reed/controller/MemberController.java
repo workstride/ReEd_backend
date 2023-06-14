@@ -27,7 +27,7 @@ public class MemberController {
 
     @Operation(summary = "회원 가입", description = "선생님, 학부모, 학생 등등 작업!!")
     @PostMapping("/register")
-    public MemberDTO insertMember(@RequestBody MemberDTO member) {
+    public Member insertMember(@RequestBody Member member) {
         return memberService.register(member);
     }
 

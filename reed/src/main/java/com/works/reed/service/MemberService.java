@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface MemberService {
-    public MemberDTO register(MemberDTO member);
+    public Member register(Member member);
 
     public MemberDTO get(Long mno);
 
@@ -19,7 +19,7 @@ public interface MemberService {
 
     public void remove(Long mno);
 
-    public void modify(MemberDTO memberDTO);
+    public void modify(Member memberDTO);
 
     default HashSet<MemberRole> memberRoleConverter(List<String> roles) {
         return roles.stream().map(role -> {
