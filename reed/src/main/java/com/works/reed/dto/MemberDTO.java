@@ -25,7 +25,7 @@ public class MemberDTO {
 
     @Schema(description = "회원 비밀번호", minimum = "4")
     //    @Size(min=4,max=16)
-    @Min(value = 4, message = "비밀번호는 4 이상")
+//    @Min(value = 4, message = "비밀번호는 4 이상")
     @NotBlank(message = "PW")
     private String memberPassword;
 
