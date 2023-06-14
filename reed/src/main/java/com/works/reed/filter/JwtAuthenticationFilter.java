@@ -34,7 +34,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final TokenRepository tokenRepository;
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException, ExpiredJwtException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
+            throws ServletException, IOException, ExpiredJwtException {
 //        request.getServletPath().contains("/api/v1/auth")
         if (request.getServletPath().matches(".*/api/v1/auth.*|.*swagger-ui.*|.*\\/v3\\/api-docs.*")) { // auth, swagger
             filterChain.doFilter(request, response);

@@ -30,7 +30,7 @@ public class Member extends BaseEntity implements UserDetails {
     private Long mno;
 
 //    @Id
-    @Column(name = "id",  nullable = false)
+    @Column(name = "id",  nullable = false, unique = true)
     private String memberId;
 
     @Column(name = "pw", nullable = false)

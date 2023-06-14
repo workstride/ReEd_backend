@@ -25,12 +25,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    /**
-     * 회원가입 후 멤버 정보 등록
-     *
-     * @param member
-     * @return
-     */
     @Operation(summary = "회원 가입", description = "선생님, 학부모, 학생 등등 작업!!")
     @PostMapping("/register")
     public MemberDTO insertMember(@RequestBody MemberDTO member) {
