@@ -41,6 +41,7 @@ public class AcademyController {
      */
     @GetMapping("/register/academy/{SC_CODE}")
     public List<AcademyDTO> academyApi(@PathVariable String SC_CODE) throws JsonProcessingException {
+
         List<AcademyDTO> academyList = null;
         ObjectMapper objectMapper = new ObjectMapper();
 

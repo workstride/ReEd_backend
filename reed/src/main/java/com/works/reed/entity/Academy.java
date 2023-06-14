@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AcademyEntity {
+public class Academy {
     @Id
     @Column(name = "ACA_ASNUM")
     private Long ACA_ASNUM;

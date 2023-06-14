@@ -23,5 +23,4 @@ public class AcademyDTO {
     @JsonProperty("FA_RDNDA")
     private String FA_RDNDA;
     private MemberEntity member;
-
 }
