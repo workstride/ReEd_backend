@@ -24,4 +24,8 @@ public class AcademyDTO {
     private String FA_RDNDA;
     private MemberEntity member;
 
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

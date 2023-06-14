@@ -20,8 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+<<<<<<< Updated upstream
 import java.net.URI;
 import java.util.List;
+=======
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+>>>>>>> Stashed changes
 
 @RestController
 @RequestMapping("/api/v1/academy")
