@@ -1,6 +1,5 @@
 package com.works.reed.entity;
 
-import com.works.reed.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.works.reed.service;
 
-import com.works.reed.dto.MemberDTO;
+import com.works.reed.dto.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ public class MemberServiceTests {
 
     @Test
     public void testRegister(){
-        MemberDTO memberDTO = MemberDTO.builder()
+        Member memberDTO = Member.builder()
                 .memberId("qwer1243")
                 .memberPassword("1234")
                 .memberName("김이박")

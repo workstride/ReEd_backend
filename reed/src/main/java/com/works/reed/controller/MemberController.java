@@ -1,6 +1,6 @@
 package com.works.reed.controller;
 
-import com.works.reed.dto.MemberDTO;
+import com.works.reed.dto.Member;
 import com.works.reed.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +18,17 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public MemberDTO insertMember(@RequestBody MemberDTO member) {
+    public Member insertMember(@RequestBody Member member) {
         return memberService.register(member);
     }
 
     @GetMapping("/{memberId}")
-    public MemberDTO getMemberByMemberId(@PathVariable String memberId) {
+    public Member getMemberByMemberId(@PathVariable String memberId) {
         return memberService.read(memberId);
     }
 
     @PutMapping("/{memberId}")
-    public void updateMemberPassword(@PathVariable String memberId, @RequestBody MemberDTO member) {
+    public void updateMemberPassword(@PathVariable String memberId, @RequestBody Member member) {
         memberService.modify(member);
     }
 

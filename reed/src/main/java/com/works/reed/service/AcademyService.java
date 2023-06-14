@@ -1,9 +1,7 @@
 package com.works.reed.service;
 
 import com.works.reed.dto.AcademyDTO;
-import com.works.reed.dto.MemberDTO;
 import com.works.reed.entity.AcademyEntity;
-import com.works.reed.entity.MemberEntity;
 
 public interface AcademyService {
     public AcademyDTO register(AcademyDTO academy);

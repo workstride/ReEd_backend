@@ -1,7 +1,6 @@
 package com.works.reed.service.impl;
 
 import com.works.reed.dto.AcademyDTO;
-import com.works.reed.dto.MemberDTO;
 import com.works.reed.entity.AcademyEntity;
 import com.works.reed.repository.AcademyRepository;
 import com.works.reed.service.AcademyService;

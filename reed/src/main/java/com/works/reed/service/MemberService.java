@@ -1,19 +1,18 @@
 package com.works.reed.service;
 
-import com.works.reed.dto.MemberDTO;
+import com.works.reed.dto.Member;
 import com.works.reed.entity.MemberEntity;
-import java.util.List;
 
 public interface MemberService {
-    public MemberDTO register(MemberDTO member);
+    public Member register(Member member);
 
-    public MemberDTO read(String memberId);
+    public Member read(String memberId);
 
     public void remove(String memberId);
 
-    public void modify(MemberDTO memberDTO);
+    public void modify(Member memberDTO);
 
-    default MemberEntity dtoToEntity(MemberDTO dto) {
+    default MemberEntity dtoToEntity(Member dto) {
         MemberEntity entity = MemberEntity.builder()
                 .memberId(dto.getMemberId())
                 .memberPassword(dto.getMemberPassword())
@@ -24,8 +23,8 @@ public interface MemberService {
         return entity;
     }
 
-    default MemberDTO entityToDto(MemberEntity entity) {
-        MemberDTO dto = MemberDTO.builder()
+    default Member entityToDto(MemberEntity entity) {
+        Member dto = Member.builder()
                 .memberName(entity.getMemberName())
                 .memberId(entity.getMemberId())
                 .memberPassword(entity.getMemberPassword())
