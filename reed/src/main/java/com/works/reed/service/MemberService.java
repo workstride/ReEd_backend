@@ -37,7 +37,6 @@ public interface MemberService {
                 .memberId(dto.getMemberId())
                 .memberPassword(dto.getMemberPassword())
                 .memberName(dto.getMemberName())
-                .memberEmail(dto.getMemberEmail())
                 .memberTel(dto.getMemberTel())
                 .roleSet(memberRoleConverter(dto.getRoles()))
                 .build();
