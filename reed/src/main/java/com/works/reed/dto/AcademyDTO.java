@@ -2,7 +2,7 @@ package com.works.reed.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.works.reed.entity.MemberEntity;
+import com.works.reed.entity.Member;
 import lombok.*;
 
 @Getter
@@ -22,5 +22,5 @@ public class AcademyDTO {
     private String FA_RDNMA;
     @JsonProperty("FA_RDNDA")
     private String FA_RDNDA;
-    private MemberEntity member;
+    private Member member;
 }

@@ -21,5 +21,5 @@ public class Academy {
     @Column(name = "ACA_NM")
     private String ACA_NM;
     @ManyToOne
-    private MemberEntity member;
+    private Member member;
 }
