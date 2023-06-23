@@ -17,7 +17,9 @@ public interface AuthenticationService {
 
     AuthenticationResponse authenticate(AuthenticationRequest dto);
 
+
     AuthenticationResponse refreshToken(HttpServletRequest request)  throws IOException;
+     AuthenticationResponse refreshToken(String token) throws IOException;
 
     default HashSet<MemberRole> memberRoleConverter(List<String> roles) {
         return roles.stream().map(role -> {

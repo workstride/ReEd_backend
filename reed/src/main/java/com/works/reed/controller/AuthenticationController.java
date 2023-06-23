@@ -44,6 +44,15 @@ public class AuthenticationController {
                 ? ResponseEntity.ok(response)
                 : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+
+    @PostMapping("/app/refresh-token")
+    public ResponseEntity<AuthenticationResponse> refreshToken(@RequestHeader("refreshToken") String refreshToken) throws IOException {
+        AuthenticationResponse response = authenticationService.refreshToken(refreshToken);
+        return (response != null)
+                ? ResponseEntity.ok(response)
+                : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
     @Operation(summary = "회원 가입", description = "일반 회원 가입(인증x)")
     @PostMapping("/register")
     public MemberDTO insertMember(@RequestBody MemberDTO member) {

@@ -25,6 +25,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -89,17 +90,33 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     public AuthenticationResponse refreshToken(HttpServletRequest request) throws IOException {
         final String authHeader = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals("refreshToken")).findFirst().map(Cookie::getValue).orElseThrow();
-        log.debug(authHeader);
-        final String refreshToken;
         final String memberId;
         if (authHeader == null) { //  || !authHeader.startsWith("Bearer ")
-            return  null;
+            return null;
         }
-//        refreshToken = authHeader.substring(7);
         memberId = jwtService.extractUsername(authHeader);
         if (memberId != null) {
             Member member = memberRepository.findByMemberId(memberId).orElseThrow(() -> new UsernameNotFoundException(String.format("Member not found with id : %s", memberId)));
             if (jwtService.isTokenValid(authHeader, member)) {
+                var accessToken = jwtService.generateToken(member);
+                revokeAllMemberTokens(member);
+                saveMemberToken(member, accessToken);
+                return AuthenticationResponse.builder().accessToken(accessToken).build();
+            }
+        }
+        return null;
+    }
+
+
+    public AuthenticationResponse refreshToken(String token) throws IOException {
+        final String memberId;
+        if (token == null) { //  || !authHeader.startsWith("Bearer ")
+            return null;
+        }
+        memberId = jwtService.extractUsername(token);
+        if (memberId != null) {
+            Member member = memberRepository.findByMemberId(memberId).orElseThrow(() -> new UsernameNotFoundException(String.format("Member not found with id : %s", memberId)));
+            if (jwtService.isTokenValid(token, member)) {
                 var accessToken = jwtService.generateToken(member);
                 revokeAllMemberTokens(member);
                 saveMemberToken(member, accessToken);

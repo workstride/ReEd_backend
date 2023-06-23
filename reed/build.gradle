@@ -16,7 +16,6 @@ configurations {
     compileOnly {
             extendsFrom annotationProcessor
         }
-		// 내부 로깅 프레임워크(Logback)을 제외합니다.
     all {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
@@ -50,55 +49,5 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-//
-//def frontendDir = "$projectDir/src/main/frontend"
-////
-//
-//sourceSets {
-//    main {
-//        resources { srcDirs = ["$projectDir/src/main/resources"]
-//        }
-//    }
-//}
-//
-//processResources { dependsOn "copyReactBuildFiles" }
-//
-//task installReact(type: Exec) {
-//    workingDir "$frontendDir"
-//    inputs.dir "$frontendDir"
-//    group = BasePlugin.BUILD_GROUP
-//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-//        commandLine "npm.cmd", "audit", "fix"
-//        commandLine 'npm.cmd', 'install', '--legacy-peer-deps'
-//	} else {
-//        commandLine "npm", "audit", "fix"
-//		commandLine 'npm', 'install', '--legacy-peer-deps'
-//    }
-//}
-//
-//task buildReact(type: Exec) {
-//    dependsOn "installReact"
-//    workingDir "$frontendDir"
-//    inputs.dir "$frontendDir"
-//    group = BasePlugin.BUILD_GROUP
-//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-//        commandLine "npm.cmd", "run-script" , "build"
-//    } else {
-//        commandLine "npm", "run-script", "build"
-//    }
-//}
-//
-//task copyReactBuildFiles(type: Copy) {
-//    dependsOn "buildReact"
-//    from "$frontendDir/build"
-//    into "$projectDir/src/main/resources/static"
-//}
 
-bootJar {
-	mainClassName = 'com.works.reed.ReedApplication'
-}
 
-bootRun {
-	String activeProfile = System.properties['spring.profiles.active']
-	systemProperty "spring.profiles.active", activeProfile
-}

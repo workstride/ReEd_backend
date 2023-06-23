@@ -49,11 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**", "/login", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**")
                 .permitAll()
-                .requestMatchers(HttpMethod.GET, "/", "/index*", "/static/**", "/locales/**", "/*.png", "/*.js", "/*.json", "/*.ico", "/*.svg")
-                .permitAll()
                 .requestMatchers("/api/v1/member/**").hasAnyRole(MemberRole.ADMIN.name(), MemberRole.MANAGER.name())
-
-
                 .anyRequest()
                 .authenticated()
                 .and()

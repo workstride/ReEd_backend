@@ -83,6 +83,7 @@ public class GlobalExceptionHandler {
                 .builder()
                 .errorMsg(exp.getMessage())
                 .build();
+
     }
 
     @ExceptionHandler(Exception.class)
