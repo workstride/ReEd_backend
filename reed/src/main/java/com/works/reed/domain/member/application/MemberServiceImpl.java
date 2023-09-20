@@ -1,12 +1,15 @@
 package com.works.reed.domain.member.application;
 
 import com.works.reed.domain.member.dao.MemberRepository;
+import com.works.reed.domain.member.domain.MemberEntity;
 import com.works.reed.domain.member.dto.Member;
 import com.works.reed.domain.member.exception.DuplicateEmailException;
 import com.works.reed.domain.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +33,26 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void delete(Long id) {
         memberRepository.deleteById(id);
+    }
+
+    @Override
+    public Member findById(Long id) {
+        Optional<MemberEntity> member = memberRepository.findById(id);
+        return toDTO(member);
+    }
+
+    Member toDTO(Optional<MemberEntity> entity) {
+        MemberEntity member = entity.get();
+        return Member.builder()
+                .id(member.getId())
+                .email(member.getEmail())
+                .pw("secret")
+                .gender(member.getGender())
+                .birth(member.getBirth())
+                .name(member.getName())
+                .tel(member.getTel())
+                .role(member.getRole())
+                .build();
     }
 
 }
