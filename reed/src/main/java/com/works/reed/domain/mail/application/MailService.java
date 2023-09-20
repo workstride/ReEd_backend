@@ -2,6 +2,7 @@ package com.works.reed.domain.mail.application;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -11,5 +12,5 @@ public interface MailService  {
     public MimeMessage createMessage(String to)throws MessagingException, UnsupportedEncodingException;
     public String sendMail(String to)throws Exception;
 
-    boolean verified(String mail, String authCode);
+    String verified(String mail, String key);
 }
