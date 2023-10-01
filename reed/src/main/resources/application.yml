@@ -2,9 +2,10 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/reed?serverTimezone=Asia/Seoul
-    username: reed
+    #    username: reed
+    #    password: qwer1234!@#$
+    username: reeduser
     password: qwer1234!@#$
-
 
   jpa:
     hibernate:
@@ -51,4 +52,4 @@ neis:
 
 firebase:
   sdk:
-    path: ./reed-b4725-firebase-adminsdk-5eqzt-0f5206b86a.json
+    path: /reed-b4725-firebase-adminsdk-5eqzt-0f5206b86a.json
