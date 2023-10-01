@@ -28,11 +28,12 @@ public class AttendaceItemReader implements ItemReader<List<NonAttendance>> {
         log.info("....................... nonAttendanceList : {} ", nonAttendanceList.size());
 
         if (nonAttendanceList.isEmpty()) {
+            page = 1;
             return null;
         }
 
         page++;
-        
+
         log.info("....................... attendaceItemReader end");
 
         return nonAttendanceList;
