@@ -25,7 +25,7 @@ public class FirebaseConfiguration {
     @PostConstruct
     public FirebaseApp initializeFCM() throws IOException {
         Resource resource = ResourcePatternUtils.getResourcePatternResolver(new DefaultResourceLoader())
-                .getResource("classpath:" + firebaseSdkPath);
+                .getResource("classpath:/" + firebaseSdkPath);
         FileInputStream fis = new FileInputStream(resource.getFile());
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(fis))
