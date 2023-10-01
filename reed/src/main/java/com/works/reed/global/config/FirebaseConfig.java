@@ -13,11 +13,11 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternUtils;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Configuration
-public class FirebaseConfiguration {
+public class FirebaseConfig {
     @Value("${firebase.sdk.path}")
     private String firebaseSdkPath;
     private FirebaseApp firebaseApp;
@@ -26,9 +26,9 @@ public class FirebaseConfiguration {
     public FirebaseApp initializeFCM() throws IOException {
         Resource resource = ResourcePatternUtils.getResourcePatternResolver(new DefaultResourceLoader())
                 .getResource("classpath:/" + firebaseSdkPath);
-        FileInputStream fis = new FileInputStream(resource.getFile());
+        InputStream is = resource.getInputStream();
         FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(fis))
+                .setCredentials(GoogleCredentials.fromStream(is))
                 .build();
         firebaseApp = FirebaseApp.initializeApp(options);
         return firebaseApp;
