@@ -9,8 +9,10 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.ResourcePatternUtils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -22,7 +24,8 @@ public class FirebaseConfiguration {
 
     @PostConstruct
     public FirebaseApp initializeFCM() throws IOException {
-        Resource resource = new ClassPathResource(firebaseSdkPath);
+        Resource resource = ResourcePatternUtils.getResourcePatternResolver(new DefaultResourceLoader())
+                .getResource("classpath:" + firebaseSdkPath);
         FileInputStream fis = new FileInputStream(resource.getFile());
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(fis))
