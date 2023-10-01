@@ -4,9 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ConstructorExpression;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-
 import com.works.reed.domain.course.dto.CourseInfo;
-import com.works.reed.domain.course.dto.CourseSchedule;
 import com.works.reed.domain.course.dto.CourseScheduleInfo;
 import com.works.reed.domain.course.dto.request.CoursePageRequest;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +62,7 @@ public class CourseQueryRepositoryImpl implements CourseQueryRepository {
                 ));
     }
 
+
     private ConstructorExpression<CourseInfo> courseInfoProjection() {
         return Projections.constructor(
                 CourseInfo.class,
@@ -75,9 +74,6 @@ public class CourseQueryRepositoryImpl implements CourseQueryRepository {
                 courseEntity.maxCnt,
                 courseEntity.startDate,
                 courseEntity.endDate,
-//                memberEntity.email.as("teacherEmail"),
-//                memberEntity.name.as("teacherName"),
-//                memberEntity.tel.as("teacherTel"),
                 list(
                         Projections.constructor(
                                 CourseScheduleInfo.class,

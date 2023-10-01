@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Schema(description = "회원 정보")
 public class MemberInfo {
     @Schema(description = "회원번호")

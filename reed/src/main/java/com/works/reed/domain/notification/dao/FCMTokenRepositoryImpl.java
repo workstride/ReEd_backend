@@ -12,13 +12,13 @@ public class FCMTokenRepositoryImpl implements FCMTokenRepository {
     private final StringRedisTemplate redisTemplate;
     public void saveToken(AuthRequest authRequest) {
         redisTemplate.opsForValue()
-                .set(authRequest.getPw(), authRequest.getToken());
+                .set(authRequest.getEmail(), authRequest.getToken());
     }
-    public String getToken(String id) {
-        return redisTemplate.opsForValue().get(id);
+    public String getToken(String email) {
+        return redisTemplate.opsForValue().get(email);
     }
-    public void deleteToken(String id) {
-        redisTemplate.delete(id);
+    public void deleteToken(String email) {
+        redisTemplate.delete(email);
     }
     public boolean hasKey(String email) {
         return redisTemplate.hasKey(email);

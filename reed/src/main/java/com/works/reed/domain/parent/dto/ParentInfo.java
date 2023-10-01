@@ -1,15 +1,15 @@
 package com.works.reed.domain.parent.dto;
 
-import com.works.reed.domain.member.enums.GenderType;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@ToString
+@AllArgsConstructor
 public class ParentInfo {
-
+    private Long memberId;
+    private Long childId;
+    private String email;
+    private String name;
 }

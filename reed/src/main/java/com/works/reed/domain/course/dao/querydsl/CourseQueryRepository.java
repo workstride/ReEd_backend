@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface CourseQueryRepository {
     List<CourseInfo> findCoursesByAcademyId(CoursePageRequest request);
-
 }

@@ -1,8 +1,10 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/reed
-    username: reed
+    url: jdbc:mysql://localhost:3306/reed?serverTimezone=Asia/Seoul
+    #    username: reed
+    #    password: qwer1234!@#$
+    username: reeduser
     password: qwer1234!@#$
 
   jpa:
@@ -12,6 +14,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+
   redis:
     host: localhost
     port: 6379
@@ -24,8 +33,6 @@ application:
       secretKey: 25432A462D4A614E645267556A586E3272357538782F413F4428472B4B625065
       expiration: 900000
       refreshExpiration: 999999
-
-
 
 # swagger
 springdoc:
@@ -43,3 +50,6 @@ neis:
     key: a0e266dd67df41eaa34ead1e81f31846
     baseUrl: https://open.neis.go.kr/hub
 
+firebase:
+  sdk:
+    path: ./reed-b4725-firebase-adminsdk-5eqzt-0f5206b86a.json
