@@ -39,29 +39,32 @@ public class MailServiceImpl implements MailService {
         return key.toString();
     }
 
-    public MimeMessage createMessage(String mail)throws MessagingException, UnsupportedEncodingException {
+    public MimeMessage createMessage(String mail)throws MessagingException {
         log.info("보내는 대상 : "+ mail);
         log.info("인증 번호 : " + mailKey);
-        MimeMessage  message = javaMailSender.createMimeMessage();
+        MimeMessage message = javaMailSender.createMimeMessage();
 
         message.addRecipients(MimeMessage.RecipientType.TO, mail);
+        message.setFrom(id);
         message.setSubject("Reed 회원가입 인증 코드");
         String msg = "안녕하세요 Reed 서비스입니다." +
                 "인증번호는 " + mailKey + "입니다.";
 
         message.setText(msg, "utf-8", "html");
-        message.setFrom("Reed");
+
+        email = mail;
 
         return message;
     }
 
     public String sendMail(String mail)throws Exception {
+        MimeMessage message = createMessage(mail);
+
         if(!mail.equals(email)) {
             throw NotFoundEmailException.EXCEPTION;
         }
 
         email = mail;
-        MimeMessage message = createMessage(mail);
         try{
             javaMailSender.send(message);
         }catch(MailException es){
@@ -71,7 +74,10 @@ public class MailServiceImpl implements MailService {
         return mailKey;
     }
 
-    public String verified(String mail, String key) {
+    public ResponseEntity verified(String mail, String key) {
+        log.info(mail);
+        log.info(key);
+
         if(!mail.equals(email)) {
             throw NotFoundEmailException.EXCEPTION;
         }
@@ -79,7 +85,7 @@ public class MailServiceImpl implements MailService {
             throw MismatchEmailKeyException.EXCEPTION;
         }
 
-        return "이메일 인증 완료";
+        return ResponseEntity.ok(key);
     }
 
 }
