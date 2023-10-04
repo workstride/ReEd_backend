@@ -1,0 +1,18 @@
+package com.works.reed.domain.announcement.mapper;
+
+import com.works.reed.domain.announcement.domain.AnnounceEntity;
+import com.works.reed.domain.announcement.dto.Announce;
+import com.works.reed.domain.member.domain.MemberEntity;
+import com.works.reed.domain.member.dto.Member;
+
+public class AnnounceMapper {
+    public AnnounceEntity createEntity(Announce announce) {
+        return AnnounceEntity.builder()
+                .id(announce.getId())
+                .annWriter(announce.getAnnWriter())
+                .annTitle(announce.getAnnTitle())
+                .annContent(announce.getAnnContent())
+                .build();
+
+    }
+}
