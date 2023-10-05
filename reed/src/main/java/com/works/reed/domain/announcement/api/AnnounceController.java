@@ -1,10 +1,12 @@
 package com.works.reed.domain.announcement.api;
 
 import com.works.reed.domain.announcement.application.AnnounceService;
+import com.works.reed.domain.announcement.dto.Announce;
 import com.works.reed.domain.announcement.dto.request.AnnounceRequest;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,4 +22,10 @@ public class AnnounceController {
     public void upLoad(AnnounceRequest request) {
         announceService.upLoad(request.toAnnounce());
     }
+
+    @PutMapping("/edit/id")
+    public void editAnn(Announce announce, Long id) {
+        announceService.edit(announce, id);
+    }
+
 }

@@ -21,8 +21,12 @@ public class AnnounceServiceImpl implements AnnounceService {
     }
 
     @Override
-    public void modify(Announce announce) {
-        announceRepository.save(mapper.createEntity(announce));
+    public void edit(Announce announce, Long id) {
+        Announce origin = Announce.builder()
+            .annTitle(announce.getAnnTitle())
+            .annContent(announce.getAnnContent())
+            .build();
+        announceRepository.save(mapper.createEntity(origin));
     }
 
     @Override
