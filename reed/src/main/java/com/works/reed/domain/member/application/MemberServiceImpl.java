@@ -38,21 +38,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member findById(Long id) {
         Optional<MemberEntity> member = memberRepository.findById(id);
-        return toDTO(member);
+        return memberMapper.CreateDto(member);
     }
 
-    Member toDTO(Optional<MemberEntity> entity) {
-        MemberEntity member = entity.get();
-        return Member.builder()
-                .id(member.getId())
-                .email(member.getEmail())
-                .pw("secret")
-                .gender(member.getGender())
-                .birth(member.getBirth())
-                .name(member.getName())
-                .tel(member.getTel())
-                .role(member.getRole())
-                .build();
-    }
+
 
 }
