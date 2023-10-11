@@ -1,9 +1,7 @@
 package com.works.reed.domain.announcement.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.works.reed.global.common.entity.BaseEntity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,18 +13,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tbl_announce")
-public class AnnounceEntity {
+public class AnnounceEntity  extends BaseEntity {
     @Id
     @Column(name = "ann_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "ac_id", nullable = false)
+    private Long academyId;
+
+    @Column(name = "ann_writer", length = 20, nullable = false)
     private String annWriter;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "ann_title", length = 30, nullable = false)
     private String annTitle;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "ann_content", length = 500, nullable = false)
     private String annContent;
 
 

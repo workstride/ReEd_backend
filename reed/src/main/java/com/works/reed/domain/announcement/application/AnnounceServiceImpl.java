@@ -24,18 +24,13 @@ public class AnnounceServiceImpl implements AnnounceService {
     }
 
     @Override
-    public void edit(Announce announce, Long id) {
+    public void edit(AnnounceRequest request, Long id) {
         Announce ann = Announce.builder()
-            .annTitle(announce.getAnnTitle())
-            .annContent(announce.getAnnContent())
-            .build();
+                .id(id)
+                .annTitle(request.getAnnTitle())
+                .annContent(request.getAnnContent())
+                .build();
         announceRepository.save(mapper.createEntity(ann));
-    }
-
-    @Override
-    public List<Announce> findAll() {
-        PageResponse<Announce> list;
-        return null;
     }
 
     @Override
