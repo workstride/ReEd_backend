@@ -19,8 +19,8 @@ public class AnnounceController {
 
     @Operation(summary = "공지 업로드", description = "공지 업로드")
     @PostMapping("/upload")
-    public void upLoad(Announce announce) {
-        announceService.upLoad(announce);
+    public void upload(Announce announce) {
+        announceService.upload(announce);
     }
 
     @Operation(summary = "공지 수정", description = "공지 수정")

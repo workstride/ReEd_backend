@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Announce {
     private Long id;
+    private Long academyId;
     private String annWriter;
     private String annTitle;
     private String annContent;

@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 public class AnnounceRequest {
     private Long id;
+    private Long academyId;
     private String annWriter;
     private String annTitle;
     private String annContent;

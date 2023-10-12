@@ -1,14 +1,16 @@
 package com.works.reed.domain.announcement.domain;
 
+import com.works.reed.domain.academy.domain.AcademyEntity;
 import com.works.reed.global.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@Builder
+@SuperBuilder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,8 +21,9 @@ public class AnnounceEntity  extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ac_id", nullable = false)
-    private Long academyId;
+    @ManyToOne
+    @JoinColumn(name="ac_id")
+    AcademyEntity academy;
 
     @Column(name = "ann_writer", length = 20, nullable = false)
     private String annWriter;

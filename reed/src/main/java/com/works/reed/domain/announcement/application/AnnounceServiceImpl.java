@@ -19,7 +19,7 @@ public class AnnounceServiceImpl implements AnnounceService {
     private final AnnounceMapper mapper;
 
     @Override
-    public void upLoad(Announce announce) {
+    public void upload(Announce announce) {
         announceRepository.save(mapper.createEntity(announce));
     }
 
