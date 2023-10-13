@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface MemberQueryService {
     PageResponse<List<MemberInfo>> findMembers(MemberPageRequest request);
+
+    MemberInfo findMember();
 }

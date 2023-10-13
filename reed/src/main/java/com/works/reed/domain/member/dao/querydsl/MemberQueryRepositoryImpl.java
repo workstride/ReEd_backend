@@ -15,6 +15,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.works.reed.domain.member.domain.QMemberEntity.memberEntity;
 import static org.springframework.util.StringUtils.hasText;
@@ -38,7 +39,15 @@ public class MemberQueryRepositoryImpl implements MemberQueryRepository {
         JPAQuery<Long> countQuery = queryFactory
                 .select(memberEntity.id.count())
                 .from(memberEntity).where(eqMemberRole(request.getRole()), search(request.getType(), request.getKeyword()));
-        return PageableExecutionUtils.getPage(result, org.springframework.data.domain.PageRequest.of(request.getPage()-1, request.getSize()), countQuery::fetchOne);
+        return PageableExecutionUtils.getPage(result, org.springframework.data.domain.PageRequest.of(request.getPage() - 1, request.getSize()), countQuery::fetchOne);
+    }
+
+    @Override
+    public Optional<MemberInfo> findMember(Long memberId) {
+        return Optional.ofNullable(queryFactory.select(memberInfoProjection())
+                .from(memberEntity)
+                .where(memberEntity.id.eq(memberId))
+                .fetchOne());
     }
 
     private BooleanExpression eqMemberRole(MemberRole role) {

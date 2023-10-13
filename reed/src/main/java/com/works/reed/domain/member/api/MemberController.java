@@ -2,6 +2,7 @@ package com.works.reed.domain.member.api;
 
 import com.works.reed.domain.member.application.MemberService;
 import com.works.reed.domain.member.application.querydsl.MemberQueryService;
+import com.works.reed.domain.member.dto.MemberInfo;
 import com.works.reed.domain.member.dto.request.MemberPageRequest;
 import com.works.reed.global.common.dto.response.PageResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,4 +31,10 @@ public class MemberController {
         return memberQueryService.findMembers(request);
     }
 
+
+    @Operation(summary = "회원 정보", description = "회원 정보")
+    @GetMapping("/profile")
+    public MemberInfo profile() {
+        return memberQueryService.findMember();
+    }
 }
