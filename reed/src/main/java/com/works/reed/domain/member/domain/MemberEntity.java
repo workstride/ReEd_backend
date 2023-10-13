@@ -1,6 +1,7 @@
 package com.works.reed.domain.member.domain;
 
 
+import com.works.reed.domain.member.dto.Member;
 import com.works.reed.domain.member.enums.GenderType;
 import com.works.reed.domain.member.enums.MemberRole;
 import com.works.reed.global.common.entity.BaseEntity;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 @Table(name = "tbl_member")
@@ -43,5 +45,6 @@ public class MemberEntity extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     private MemberRole role;
+
 
 }
