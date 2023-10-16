@@ -3,6 +3,7 @@ package com.works.reed.domain.attendance.mapper;
 import com.works.reed.domain.academy.domain.id.AcadMemberId;
 import com.works.reed.domain.attendance.domain.AttendanceCodeEntity;
 import com.works.reed.domain.attendance.domain.AttendanceEntity;
+import com.works.reed.domain.attendance.domain.enums.AttendanceCodeType;
 import com.works.reed.domain.attendance.dto.Attendance;
 import com.works.reed.domain.attendance.dto.AttendanceCode;
 import org.springframework.stereotype.Component;
@@ -15,12 +16,13 @@ import java.util.UUID;
 @Component
 public class AttendanceMapper {
 
-    public AttendanceCodeEntity createAttendanceCodeEntity(AttendanceCode code) {
+    public AttendanceCodeEntity createQRCodeAttendanceCodeEntity(AttendanceCode code) {
         return AttendanceCodeEntity.builder()
                 .id(code.getId())
                 .courseId(code.getCourseId())
                 .acadMemberId(createAcadMemberId(code.getAcademyId(), code.getMemberId()))
                 .code(UUID.randomUUID().toString())
+                .type(AttendanceCodeType.QRCODE)
                 .active(true)
                 .build();
     }
@@ -46,6 +48,7 @@ public class AttendanceMapper {
                 .memberId(attendanceCodeEntity.getAcadMemberId().getMemberId())
                 .academyId(attendanceCodeEntity.getAcadMemberId().getAcademyId())
                 .code(attendanceCodeEntity.getCode())
+                .type(attendanceCodeEntity.getType())
                 .active(attendanceCodeEntity.isActive())
                 .build();
     }

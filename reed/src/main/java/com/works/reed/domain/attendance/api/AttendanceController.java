@@ -22,15 +22,21 @@ public class AttendanceController {
 
     private final AttendanceService attendanceService;
 
-    @PostMapping("")
-    public void attendance(@Validated @RequestBody AttendanceRequest request) {
-        attendanceService.attendance(request);
+    @PostMapping("/qrcode")
+    public void attendanceQRcode(@Validated @RequestBody AttendanceRequest request) {
+        attendanceService.attendanceQRcode(request.getCode());
     }
 
-    @PostMapping("/generate/code")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AttendanceCodeResponse generateCode(@Validated @RequestBody AttendanceCodeRequest request) {
-        return attendanceService.generateCode(request.toAttendanceCode());
+    @PostMapping("/nfc")
+    public void attendanceNfc(@Validated @RequestBody AttendanceRequest request) {
+        attendanceService.attendanceNFC(request.getCode());
     }
+
+    @PostMapping("/generate/qrcode")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AttendanceCodeResponse generateQRCode(@Validated @RequestBody AttendanceCodeRequest request) {
+        return attendanceService.generateQRCode(request.toAttendanceCode());
+    }
+
 
 }

@@ -3,8 +3,8 @@ package com.works.reed.domain.attendance.application;
 import com.works.reed.domain.attendance.dao.AttendanceCodeRepository;
 import com.works.reed.domain.attendance.dao.AttendanceRepository;
 import com.works.reed.domain.attendance.domain.AttendanceCodeEntity;
+import com.works.reed.domain.attendance.domain.enums.AttendanceCodeType;
 import com.works.reed.domain.attendance.dto.AttendanceCode;
-import com.works.reed.domain.attendance.dto.request.AttendanceRequest;
 import com.works.reed.domain.attendance.dto.response.AttendanceCodeResponse;
 import com.works.reed.domain.attendance.exception.NotFoundAttendanceCodeException;
 import com.works.reed.domain.attendance.mapper.AttendanceMapper;
@@ -28,8 +28,8 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final AttendanceMapper attendanceMapper;
 
     @Override
-    public void attendance(AttendanceRequest request) {
-        AttendanceCode attendanceCode = attendanceCodeRepository.findByCodeAndActive(request.getCode(), true)
+    public void attendanceQRcode(String code) {
+        AttendanceCode attendanceCode = attendanceCodeRepository.findByActiveCode(code, AttendanceCodeType.QRCODE)
                 .map(attendanceMapper::toAttendanceCode)
                 .orElseThrow(() -> NotFoundAttendanceCodeException.EXCEPTION);
         CourseStudent courseStudent = courseStudentQueryRepository.findCourseStudent(attendanceCode.getCourseId(), memberSecurity.getMember().getId()).orElseThrow(() -> NotFoundCourseException.EXCEPTION);
@@ -37,9 +37,18 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public AttendanceCodeResponse generateCode(AttendanceCode attendanceCode) {
-        attendanceCodeRepository.expireCode(attendanceCode.getCourseId());
-        AttendanceCodeEntity attendanceCodeEntity = attendanceCodeRepository.save(attendanceMapper.createAttendanceCodeEntity(attendanceCode));
+    public void attendanceNFC(String tag) {
+        AttendanceCode attendanceCode = attendanceCodeRepository.findByActiveCode(tag, AttendanceCodeType.NFC)
+                .map(attendanceMapper::toAttendanceCode)
+                .orElseThrow(() -> NotFoundAttendanceCodeException.EXCEPTION);
+        CourseStudent courseStudent = courseStudentQueryRepository.findCourseStudent(attendanceCode.getCourseId(), memberSecurity.getMember().getId()).orElseThrow(() -> NotFoundCourseException.EXCEPTION);
+        attendanceRepository.save(attendanceMapper.createAttendanceEntity(courseStudent.getId()));
+    }
+
+    @Override
+    public AttendanceCodeResponse generateQRCode(AttendanceCode attendanceCode) {
+        attendanceCodeRepository.expireCode(attendanceCode.getCourseId(), AttendanceCodeType.QRCODE);
+        AttendanceCodeEntity attendanceCodeEntity = attendanceCodeRepository.save(attendanceMapper.createQRCodeAttendanceCodeEntity(attendanceCode));
         return AttendanceCodeResponse.builder().code(attendanceCodeEntity.getCode()).date(attendanceCodeEntity.getRegDate()).build();
     }
 

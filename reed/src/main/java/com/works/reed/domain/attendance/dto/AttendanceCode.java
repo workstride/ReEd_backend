@@ -1,5 +1,6 @@
 package com.works.reed.domain.attendance.dto;
 
+import com.works.reed.domain.attendance.domain.enums.AttendanceCodeType;
 import lombok.*;
 
 @Getter
@@ -13,5 +14,6 @@ public class AttendanceCode {
     private Long academyId;
     private Long memberId;
     private String code;
+    private AttendanceCodeType type;
     private boolean active;
 }
