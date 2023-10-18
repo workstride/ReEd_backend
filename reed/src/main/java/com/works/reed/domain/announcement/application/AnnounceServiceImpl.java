@@ -21,6 +21,7 @@ public class AnnounceServiceImpl implements AnnounceService {
     @Override
     public void upload(AnnounceRequest announce) {
         Announce ann = Announce.builder()
+                .annWriter(announce.getAnnWriter())
                 .annTitle(announce.getAnnTitle())
                 .annContent(announce.getAnnContent())
                 .build();
@@ -32,6 +33,8 @@ public class AnnounceServiceImpl implements AnnounceService {
     public void edit(AnnounceRequest request, Long id) {
         Announce ann = Announce.builder()
                 .id(id)
+                .academyId(request.getAcademyId())
+                .annWriter(request.getAnnWriter())
                 .annTitle(request.getAnnTitle())
                 .annContent(request.getAnnContent())
                 .build();
