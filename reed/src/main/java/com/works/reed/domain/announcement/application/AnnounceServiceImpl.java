@@ -19,8 +19,13 @@ public class AnnounceServiceImpl implements AnnounceService {
     private final AnnounceMapper mapper;
 
     @Override
-    public void upload(Announce announce) {
-        announceRepository.save(mapper.createEntity(announce));
+    public void upload(AnnounceRequest announce) {
+        Announce ann = Announce.builder()
+                .annTitle(announce.getAnnTitle())
+                .annContent(announce.getAnnContent())
+                .build();
+
+        announceRepository.save(mapper.createEntity(ann));
     }
 
     @Override
