@@ -6,6 +6,7 @@ import com.works.reed.domain.course.dto.CourseInfo;
 import com.works.reed.domain.course.dto.request.CoursePageRequest;
 import com.works.reed.domain.course.dto.request.CourseRegisterRequest;
 import com.works.reed.domain.course.dto.request.CourseStudRegisterRequest;
+import com.works.reed.domain.course.dto.response.CourseTodaySchedule;
 import com.works.reed.global.common.dto.response.PageResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -28,7 +29,7 @@ import java.util.List;
 public class CourseController {
 
     private final CourseService service;
-    private final CourseQueryService classQueryService;
+    private final CourseQueryService courseQueryService;
 
     @Operation(summary = "수업 등록", description = "수업 등록")
     @PreAuthorize("hasRole('ROLE_HEAD_TEACHER')")
@@ -48,8 +49,8 @@ public class CourseController {
     @Operation(summary = "수업 조회", description = "수업 조회")
     @PreAuthorize("hasAnyRole('ROLE_HEAD_TEACHER', 'ROLE_TEACHER')")
     @GetMapping("/list")
-    public PageResponse<List<CourseInfo>> findCoursesByAcno(@Validated @ModelAttribute CoursePageRequest request) {
-         return classQueryService.findCoursesByAcademyId(request);
+    public PageResponse<List<CourseInfo>> findCoursesByAcademyId(@Validated @ModelAttribute CoursePageRequest request) {
+        return courseQueryService.findCoursesByAcademyId(request);
     }
 
     @Operation(summary = "수업(강의) 신청", description = "수업(강의) 신청")
@@ -58,6 +59,12 @@ public class CourseController {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerCourses(@Validated @RequestBody CourseStudRegisterRequest request) {
         service.registerCourses(request.toCourseStudent());
+    }
+
+    @Operation(summary = "오늘 수업(강의)", description = "오늘 수업(강의)")
+    @GetMapping("/schedules")
+    public List<CourseTodaySchedule> findCoursesByMemberId() {
+        return courseQueryService.findCoursesByMemberId();
     }
 
 }
