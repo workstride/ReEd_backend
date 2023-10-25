@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "회원", description = "회원")
 @SecurityRequirement(name = "BearerAuthentication")
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
