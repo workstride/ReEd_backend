@@ -1,10 +1,10 @@
 package com.works.reed.domain.announcement.domain;
 
-import com.works.reed.domain.academy.domain.AcademyEntity;
+import com.works.reed.domain.academy.domain.id.AcadMemberId;
 import com.works.reed.global.common.entity.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -12,18 +12,16 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "tbl_announce")
-public class AnnounceEntity  extends BaseEntity {
+public class AnnounceEntity extends BaseEntity {
+
     @Id
-    @Column(name = "ann_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="ac_id")
-    AcademyEntity academy;
+    private AcadMemberId acadMemberId;
 
     @Column(name = "ann_writer", length = 20, nullable = false)
     private String annWriter;
@@ -33,6 +31,5 @@ public class AnnounceEntity  extends BaseEntity {
 
     @Column(name = "ann_content", length = 500, nullable = false)
     private String annContent;
-
 
 }

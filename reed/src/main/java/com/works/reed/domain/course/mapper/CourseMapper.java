@@ -47,16 +47,6 @@ public class CourseMapper {
                 .build();
     }
 
-    public CourseSchedule toCourseSchedule(CourseScheduleEntity courseScheduleEntity) {
-        return CourseSchedule.builder()
-                .id(courseScheduleEntity.getId())
-                .courseId(courseScheduleEntity.getCourseId())
-                .dayOfWeek(courseScheduleEntity.getDayOfWeek())
-                .startTime(courseScheduleEntity.getStartTime())
-                .endTime(courseScheduleEntity.getEndTime())
-                .build();
-    }
-
     public CourseStudentEntity createCourseStudent(CourseStudent dto) {
         return CourseStudentEntity.builder()
                 .id(dto.getId())

@@ -7,11 +7,10 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Announce {
+public class AnnounceInfo {
     private Long id;
-    private Long academyId;
-    private Long memberId;
     private String annWriter;
     private String annTitle;
     private String annContent;
+    private String regDate;
 }
