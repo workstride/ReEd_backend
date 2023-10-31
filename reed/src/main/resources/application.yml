@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/reed?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://52.79.171.108:3306/reed?serverTimezone=Asia/Seoul
     username: reed
     password: qwer1234!@#$
 

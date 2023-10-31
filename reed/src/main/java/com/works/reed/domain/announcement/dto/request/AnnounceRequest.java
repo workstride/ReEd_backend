@@ -14,6 +14,8 @@ import lombok.*;
 public class AnnounceRequest {
     @NotNull
     private Long academyId;
+    @NotNull
+    private Long memberId;
     @NotBlank
     private String annWriter;
     @NotBlank
