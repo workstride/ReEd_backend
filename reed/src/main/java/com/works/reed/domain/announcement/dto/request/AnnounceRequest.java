@@ -1,7 +1,5 @@
 package com.works.reed.domain.announcement.dto.request;
 
-import com.works.reed.domain.academy.dto.Academy;
-import com.works.reed.domain.announcement.dto.Announce;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -14,8 +12,8 @@ import lombok.*;
 public class AnnounceRequest {
     @NotNull
     private Long academyId;
-    @NotNull
-    private Long memberId;
+    //    @NotNull
+//    private Long memberId;
     @NotBlank
     private String annWriter;
     @NotBlank

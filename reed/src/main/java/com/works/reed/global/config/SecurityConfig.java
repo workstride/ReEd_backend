@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/teacher/list").hasRole("HEAD_TEACHER")
                                 .requestMatchers("/api/teacher/**").hasAnyRole("HEAD_TEACHER", "TEACHER")
                                 .requestMatchers("/api/attendance/generate/code").hasAnyRole("HEAD_TEACHER", "TEACHER")
-                                .requestMatchers("/api/ann/**").hasAnyRole("HEAD_TEACHER", "TEACHER")
+//                                .requestMatchers("/api/ann/**").hasAnyRole("HEAD_TEACHER", "TEACHER")
                                 .anyRequest()
                                 .authenticated()
                 )
