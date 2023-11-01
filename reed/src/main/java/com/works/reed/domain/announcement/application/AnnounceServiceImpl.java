@@ -21,7 +21,6 @@ public class AnnounceServiceImpl implements AnnounceService {
         Announce ann = Announce.builder()
                 .academyId(announce.getAcademyId())
                 .memberId(memberSecurity.getMember().getId())
-                .annWriter(announce.getAnnWriter())
                 .annTitle(announce.getAnnTitle())
                 .annContent(announce.getAnnContent())
                 .build();
@@ -34,7 +33,6 @@ public class AnnounceServiceImpl implements AnnounceService {
         Announce ann = Announce.builder()
                 .id(id)
                 .academyId(request.getAcademyId())
-                .annWriter(request.getAnnWriter())
                 .annTitle(request.getAnnTitle())
                 .annContent(request.getAnnContent())
                 .build();

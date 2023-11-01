@@ -11,7 +11,6 @@ public class Announce {
     private Long id;
     private Long academyId;
     private Long memberId;
-    private String annWriter;
     private String annTitle;
     private String annContent;
 }

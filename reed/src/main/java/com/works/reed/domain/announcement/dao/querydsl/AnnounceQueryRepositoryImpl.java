@@ -43,7 +43,6 @@ public class AnnounceQueryRepositoryImpl implements AnnounceQueryRepository {
         return Projections.constructor(
                 AnnounceInfo.class,
                 announceEntity.id,
-                announceEntity.annWriter,
                 announceEntity.annTitle,
                 announceEntity.annContent,
                 Expressions.dateTemplate(String.class, "DATE_FORMAT({0}, '%Y.%m.%d')", announceEntity.regDate)
