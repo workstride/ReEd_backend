@@ -45,9 +45,16 @@ public class AnnounceController {
         announceService.delete(id);
     }
 
+    @Operation(summary = "공지 리스트", description = "공지 리스트")
     @GetMapping("/list")
     public PageResponse<List<AnnounceInfo>> findAnnounces(@ModelAttribute AnnouncePageRequest pageRequest) {
         return announceQueryService.findAnnounces(pageRequest);
+    }
+
+    @Operation(summary = "공지 읽기", description = "공지 읽기")
+    @GetMapping("/{id}")
+    public AnnounceInfo findById(@PathVariable Long id) {
+        return announceService.read(id);
     }
 
 }

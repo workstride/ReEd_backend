@@ -9,6 +9,7 @@ import com.works.reed.domain.announcement.dto.AnnounceInfo;
 import com.works.reed.domain.announcement.dto.request.AnnouncePageRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 

@@ -23,5 +23,4 @@ public class AnnounceQueryServiceImpl implements AnnounceQueryService {
         Page<AnnounceInfo> result = announceQueryRepository.findAnnounces(request);
         return new PageResponse<List<AnnounceInfo>>(result.toList(), result.getTotalPages());
     }
-
 }
