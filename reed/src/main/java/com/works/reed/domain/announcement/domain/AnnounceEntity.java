@@ -23,9 +23,6 @@ public class AnnounceEntity extends BaseEntity {
 
     private AcadMemberId acadMemberId;
 
-    @Column(name = "ann_writer", length = 20, nullable = false)
-    private String annWriter;
-
     @Column(name = "ann_title", length = 30, nullable = false)
     private String annTitle;
 

@@ -15,8 +15,6 @@ public class AnnounceRequest {
     //    @NotNull
 //    private Long memberId;
     @NotBlank
-    private String annWriter;
-    @NotBlank
     private String annTitle;
     @NotBlank
     private String annContent;

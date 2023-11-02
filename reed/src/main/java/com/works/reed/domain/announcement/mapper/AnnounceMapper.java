@@ -18,7 +18,6 @@ public class AnnounceMapper {
                                 .academyId(announce.getAcademyId())
                                 .build()
                 )
-                .annWriter(announce.getAnnWriter())
                 .annTitle(announce.getAnnTitle())
                 .annContent(announce.getAnnContent())
                 .build();
@@ -30,7 +29,6 @@ public class AnnounceMapper {
 
         return Announce.builder()
                 .id(announce.getId())
-                .annWriter(announce.getAnnWriter())
                 .annTitle(announce.getAnnTitle())
                 .annContent(announce.getAnnContent())
                 .build();
