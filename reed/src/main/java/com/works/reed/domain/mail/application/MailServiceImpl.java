@@ -22,7 +22,7 @@ import java.util.Random;
 public class MailServiceImpl implements MailService {
     private final JavaMailSender javaMailSender;
 
-    private String mailKey;
+    private final String mailKey = createKey();
     private String email;
 
     @Value("${spring.mail.username}")
@@ -70,7 +70,6 @@ public class MailServiceImpl implements MailService {
             throw new IllegalArgumentException();
         }
 
-        mailKey = createKey();
         return mailKey;
     }
 
