@@ -1,17 +1,15 @@
 package com.works.reed.domain.mail.api;
 
 import com.works.reed.domain.mail.application.MailService;
+import com.works.reed.domain.mail.dto.Email;
+import com.works.reed.domain.mail.dto.request.EmailRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @Tag(name = "메일", description = "메일")
 @Controller
@@ -24,17 +22,14 @@ public class MailController {
 
     @Operation(summary = "인증 코드 전송", description = "인증 코드 전송")
     @PostMapping("/send")
-    public void mailSending(@RequestBody Map<String, String> mailMap) throws Exception {
-        String mail = mailMap.get("mail");
-        mailService.sendMail(mail);
+    public void mailSending(@RequestBody Email email) throws Exception {
+        mailService.sendMail(email);
     }
 
     @Operation(summary = "인증 코드 등록", description = "인증 코드 등록")
     @GetMapping("/verify")
-    public ResponseEntity mailVerify(@RequestBody Map<String, String> mailMap) {
-        String mail = mailMap.get("mail");
-        String key = mailMap.get("key");
-        return mailService.verified(mail, key);
+    public ResponseEntity mailVerify(@RequestBody EmailRequest email) {
+        return mailService.verified(email);
     }
 
 }
