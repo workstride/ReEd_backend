@@ -1,20 +1,19 @@
 package com.works.reed.domain.mail.application;
 
 import com.google.api.client.util.Value;
+import com.works.reed.domain.mail.dto.Email;
+import com.works.reed.domain.mail.dto.request.EmailRequest;
 import com.works.reed.domain.mail.exception.MismatchEmailKeyException;
 import com.works.reed.domain.mail.exception.NotFoundEmailException;
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 @Service
@@ -23,7 +22,7 @@ import java.util.Random;
 public class MailServiceImpl implements MailService {
     private final JavaMailSender javaMailSender;
 
-    private final String mailKey = createKey();
+    private String mailKey;
     private String email;
 
     @Value("${spring.mail.username}")
@@ -57,35 +56,33 @@ public class MailServiceImpl implements MailService {
         return message;
     }
 
-    public String sendMail(String mail)throws Exception {
-        MimeMessage message = createMessage(mail);
+    public String sendMail(Email mail)throws Exception {
+        MimeMessage message = createMessage(mail.getEmail());
 
-        if(!mail.equals(email)) {
+        if(!mail.getEmail().equals(email)) {
             throw NotFoundEmailException.EXCEPTION;
         }
 
-        email = mail;
         try{
             javaMailSender.send(message);
         }catch(MailException es){
             es.printStackTrace();
             throw new IllegalArgumentException();
         }
+
+        mailKey = createKey();
         return mailKey;
     }
 
-    public ResponseEntity verified(String mail, String key) {
-        log.info(mail);
-        log.info(key);
-
-        if(!mail.equals(email)) {
+    public ResponseEntity verified(EmailRequest mail) {
+        if(!mail.getEmail().equals(email)) {
             throw NotFoundEmailException.EXCEPTION;
         }
-        if(!key.equals(mailKey)) {
+        if(!mail.getKey().equals(mailKey)) {
             throw MismatchEmailKeyException.EXCEPTION;
         }
 
-        return ResponseEntity.ok(key);
+        return ResponseEntity.ok(mail.getKey());
     }
 
 }
