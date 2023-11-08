@@ -22,7 +22,7 @@ import java.util.Random;
 public class MailServiceImpl implements MailService {
     private final JavaMailSender javaMailSender;
 
-    private final String mailKey = createKey();
+    private String mailKey;
     private String email;
 
     @Value("${spring.mail.username}")
@@ -39,8 +39,7 @@ public class MailServiceImpl implements MailService {
     }
 
     public MimeMessage createMessage(String mail)throws MessagingException {
-        log.info("보내는 대상 : "+ mail);
-        log.info("인증 번호 : " + mailKey);
+        mailKey = createKey();
         MimeMessage message = javaMailSender.createMimeMessage();
 
         message.addRecipients(MimeMessage.RecipientType.TO, mail);
