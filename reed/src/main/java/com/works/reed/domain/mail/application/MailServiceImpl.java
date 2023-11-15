@@ -72,7 +72,7 @@ public class MailServiceImpl implements MailService {
         return mailKey;
     }
 
-    public ResponseEntity verified(EmailRequest mail) {
+    public Email verified(EmailRequest mail) {
         if(!mail.getEmail().equals(email)) {
             throw NotFoundEmailException.EXCEPTION;
         }
@@ -80,7 +80,7 @@ public class MailServiceImpl implements MailService {
             throw MismatchEmailKeyException.EXCEPTION;
         }
 
-        return ResponseEntity.ok(mail.getKey());
+        return Email.builder().email(email).build();
     }
 
 }

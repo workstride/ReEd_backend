@@ -6,6 +6,8 @@ import com.works.reed.domain.course.dto.CourseInfo;
 import com.works.reed.domain.course.dto.request.CoursePageRequest;
 import com.works.reed.domain.course.dto.request.CourseRegisterRequest;
 import com.works.reed.domain.course.dto.request.CourseStudRegisterRequest;
+//import com.works.reed.domain.course.dto.response.CourseAttendanceInfo;
+import com.works.reed.domain.course.dto.response.CourseAttendanceInfo;
 import com.works.reed.domain.course.dto.response.CourseTodaySchedule;
 import com.works.reed.global.common.dto.response.PageResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,6 +67,12 @@ public class CourseController {
     @GetMapping("/schedules")
     public List<CourseTodaySchedule> findCoursesByMemberId() {
         return courseQueryService.findCoursesByMemberId();
+    }
+
+    @Operation(summary = "수업 출석 현황", description = "수업 출석 현황")
+    @GetMapping("/{courseId}")
+    public List<CourseAttendanceInfo> findAttendanceByCourseId(@PathVariable("courseId") Long courseId) {
+        return service.findCourseAttendanceInfo(courseId);
     }
 
 }
