@@ -14,5 +14,5 @@ public interface MailService  {
     public MimeMessage createMessage(String to)throws MessagingException, UnsupportedEncodingException;
     public String sendMail(Email to)throws Exception;
 
-    ResponseEntity verified(EmailRequest email);
+    Email verified(EmailRequest email);
 }
