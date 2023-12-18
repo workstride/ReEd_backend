@@ -30,8 +30,8 @@ public class MailController {
 
     @Operation(summary = "인증 코드 등록", description = "인증 코드 등록")
     @GetMapping("/verify")
-    public ResponseEntity mailVerify(@RequestBody EmailRequest email) {
-        return mailService.verified(email);
+    public ResponseEntity<Email> mailVerify(@RequestBody EmailRequest email) {
+        return ResponseEntity.ok(mailService.verified(email));
     }
 
 }
