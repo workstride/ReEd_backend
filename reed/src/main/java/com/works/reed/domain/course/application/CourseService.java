@@ -15,4 +15,6 @@ public interface CourseService {
     void registerCourses(CourseStudent courseStudent);
 
     List<CourseAttendanceInfo> findCourseAttendanceInfo(Long courseId);
+
+    void attendance(Long memberId);
 }

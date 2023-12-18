@@ -8,6 +8,7 @@ import com.works.reed.domain.attendance.dto.AttendanceCode;
 import com.works.reed.domain.attendance.dto.response.AttendanceCodeResponse;
 import com.works.reed.domain.attendance.exception.NotFoundAttendanceCodeException;
 import com.works.reed.domain.attendance.mapper.AttendanceMapper;
+import com.works.reed.domain.course.application.CourseService;
 import com.works.reed.domain.course.dao.querydsl.CourseStudentQueryRepository;
 import com.works.reed.domain.course.dto.CourseStudent;
 import com.works.reed.domain.course.exception.NotFoundCourseException;
@@ -26,6 +27,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final CourseStudentQueryRepository courseStudentQueryRepository;
     private final MemberSecurity memberSecurity;
     private final AttendanceMapper attendanceMapper;
+    private final CourseService courseService;
 
     @Override
     public void attendanceQRcode(String code) {
@@ -34,6 +36,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .orElseThrow(() -> NotFoundAttendanceCodeException.EXCEPTION);
         CourseStudent courseStudent = courseStudentQueryRepository.findCourseStudent(attendanceCode.getCourseId(), memberSecurity.getMember().getId()).orElseThrow(() -> NotFoundCourseException.EXCEPTION);
         attendanceRepository.save(attendanceMapper.createAttendanceEntity(courseStudent.getId()));
+        courseService.attendance(memberSecurity.getMember().getId());
     }
 
     @Override
@@ -43,6 +46,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .orElseThrow(() -> NotFoundAttendanceCodeException.EXCEPTION);
         CourseStudent courseStudent = courseStudentQueryRepository.findCourseStudent(attendanceCode.getCourseId(), memberSecurity.getMember().getId()).orElseThrow(() -> NotFoundCourseException.EXCEPTION);
         attendanceRepository.save(attendanceMapper.createAttendanceEntity(courseStudent.getId()));
+        courseService.attendance(memberSecurity.getMember().getId());
     }
 
     @Override
